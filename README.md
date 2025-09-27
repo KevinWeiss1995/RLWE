@@ -2,11 +2,7 @@
 
 ## Overview
 
-This is a production-ready implementation of Ring Learning With Errors (RLWE) based cryptography designed for enterprise applications. The system provides homomorphic encryption capabilities with enterprise-grade security, performance monitoring, and comprehensive logging.
-
-## What This System Does
-
-RLWE (Ring Learning With Errors) is a type of lattice-based cryptography that allows you to perform computations on encrypted data without decrypting it first. This implementation provides:
+This is a RLWE cryptosystem with the following functionality:
 
 - Secure key generation and management
 - Bit-level and batch encryption/decryption

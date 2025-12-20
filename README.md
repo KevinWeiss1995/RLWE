@@ -38,7 +38,7 @@ This means:
 - Polynomial coefficients are reduced modulo $q$
 - Polynomials “wrap around” due to the relation $x^n = -1$
 
-A degree-$(n-1)$ polynomial in this ring represents an $n$-dimensional vector, but polynomial multiplication mixes coefficients together in a structured way.
+A degree- $(n-1)$ polynomial in this ring represents an $n$-dimensional vector, but polynomial multiplication mixes coefficients together in a structured way.
 
 ---
 

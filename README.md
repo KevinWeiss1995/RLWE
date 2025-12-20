@@ -12,6 +12,52 @@ This is a RLWE cryptosystem with the following functionality:
 - Side-channel attack protection
 - Memory safety and secure allocation
 
+The core idea behind RLWE, simply put, is hiding a secret with slightly wrong multiplication; just enough error that reversing the math becomes impossible. You start with a familiar linear equation:
+
+$$
+b(x) = a(x)\cdot s(x) + e(x) \pmod{q}
+$$
+
+where:
+- $a(x)$ is a public, uniformly random polynomial  
+- $s(x)$ is a secret polynomial  
+- $e(x)$ is a small error (noise) polynomial  
+- All arithmetic is performed modulo a large integer $q$
+
+If the error term $e(x)$ were zero, recovering $s(x)$ would be straightforward using linear algebra. The problem becomes hard precisely because the equation is *almost* correct, but not exact. The small error prevents exact inversion. 
+
+## Working in a Polynomial Ring
+
+RLWE operates over the quotient ring:
+
+$$
+R_q = \mathbb{Z}_q[x] / (x^n + 1)
+$$
+
+This means:
+- Polynomial coefficients are reduced modulo $q$
+- Polynomials “wrap around” due to the relation $x^n = -1$
+
+A degree-$(n-1)$ polynomial in this ring represents an $n$-dimensional vector, but polynomial multiplication mixes coefficients together in a structured way.
+
+---
+
+## Why the Error Matters
+
+Polynomial multiplication already blends coefficients across dimensions:
+
+$$
+(a \cdot s)_k = \sum_{i+j=k} a_i s_j \pmod{q}
+$$
+
+Adding the error polynomial $e(x)$ slightly perturbs every coefficient. This noise:
+- Breaks exact algebraic relationships
+- Prevents solving the system using linear or spectral methods
+- Cannot be averaged away across samples due to ring wraparound
+
+The result is a system that is easy to compute forward, but extremely hard to reverse.
+
+
 ## Quick Start
 
 ### Prerequisites
